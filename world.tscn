@@ -5,6 +5,7 @@
 [node name="World" type="Node3D" unique_id=1291810029]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=629584408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7590654, 0)
 use_collision = true
 size = Vector3(20, 1, 20)
 

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://chgudugvmir6u"]
+
+[ext_resource type="Script" uid="uid://2mbyb517vr1c" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="FontFile" uid="uid://d4ib0norfqp53" path="res://fonts/EduVICWANTHand-VariableFont_wght.ttf" id="2_fu7sn"]
+
+[node name="MainMenu" type="Control" unique_id=747557215]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7vrkn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1440188327]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1910995011]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu7sn")
+theme_override_font_sizes/font_size = 64
+text = "Vertex"
+
+[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=2138266723]
+layout_mode = 2
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1273873920]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

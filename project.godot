@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="vertux"
-run/main_scene="uid://5s2x7nubkgkd"
+run/main_scene="uid://chgudugvmir6u"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

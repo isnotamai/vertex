@@ -3,8 +3,11 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.002
+const RECOIL_AMOUNT = 2.0
 
 @onready var head = $Head
+@onready var camera = $Head/Camera3D
+@onready var raycast = $Head/Camera3D/RayCast3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
@@ -20,6 +23,28 @@ func _input(event):
 		head.orthonormalize()
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	if event.is_action_pressed("fire"):
+		shoot()
+	if event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+func shoot():
+	if raycast.is_colliding():
+		var target = raycast.get_collider()
+		if target.has_method("take_damage"):
+			target.take_damage()
+		#else:
+		#	print("shoot a unval target", target.name)
+	apply_recoil()
+	
+func apply_recoil():
+	head.rotation.x += deg_to_rad(RECOIL_AMOUNT)
+	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+	var tween = get_tree().create_tween()
+	tween.tween_property(camera,"fov",72.0,0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(camera,"fov",75.0,0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
 
 func _physics_process(delta):
 	#gravity

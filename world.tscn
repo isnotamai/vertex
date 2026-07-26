@@ -1,6 +1,17 @@
 [gd_scene format=3 uid="uid://5s2x7nubkgkd"]
 
 [ext_resource type="PackedScene" uid="uid://cjepb1i4cb85f" path="res://player.tscn" id="1_f3sb7"]
+[ext_resource type="Texture2D" uid="uid://7qxxeh3xgvl" path="res://res/skybox-day.png" id="2_fj7yv"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_40vc6"]
+panorama = ExtResource("2_fj7yv")
+
+[sub_resource type="Sky" id="Sky_m63kh"]
+sky_material = SubResource("PanoramaSkyMaterial_40vc6")
+
+[sub_resource type="Environment" id="Environment_w6j4e"]
+background_mode = 2
+sky = SubResource("Sky_m63kh")
 
 [node name="World" type="Node3D" unique_id=1291810029]
 
@@ -13,3 +24,8 @@ size = Vector3(20, 1, 20)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20345473, 8.787709, 0)
 
 [node name="Player" parent="CSGBox3D/DirectionalLight3D" unique_id=1691155727 instance=ExtResource("1_f3sb7")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1368660950]
+environment = SubResource("Environment_w6j4e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=499151202]

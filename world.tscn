@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cjepb1i4cb85f" path="res://player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://7qxxeh3xgvl" path="res://res/skybox-day.png" id="2_fj7yv"]
+[ext_resource type="Script" uid="uid://dt6qqw5h1xu0t" path="res://enemy_spawner.gd" id="3_tlwt5"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_40vc6"]
 panorama = ExtResource("2_fj7yv")
@@ -31,3 +32,16 @@ environment = SubResource("Environment_w6j4e")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=499151202]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.371138, 0)
+
+[node name="EnemySpawner" type="Node3D" parent="." unique_id=1828914682]
+script = ExtResource("3_tlwt5")
+
+[node name="Timer" type="Timer" parent="EnemySpawner" unique_id=374726245]
+wait_time = 2.0
+autostart = true
+
+[node name="Spawnpoint1" type="Marker3D" parent="EnemySpawner" unique_id=423630521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.233856, 7.071079)
+
+[connection signal="timeout" from="EnemySpawner/Timer" to="CSGBox3D/DirectionalLight3D/Player" method="_on_timer_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

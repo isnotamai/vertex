@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cqr14fxyd1xth"]
+
+[ext_resource type="Script" uid="uid://dckpotmhhmo5" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="PackedScene" uid="uid://cjpr1arbsh47b" path="res://res/models/enemy.glb" id="2_4gyqm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_15f66"]
+radius = 0.53759766
+height = 4.4699326
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1531969304]
+script = ExtResource("1_7k104")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1615235123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1665611, -0.22614944)
+shape = SubResource("CapsuleShape3D_15f66")
+
+[node name="Sketchfab_Scene" parent="." unique_id=165668647 instance=ExtResource("2_4gyqm")]
+transform = Transform3D(0.3, 0, 5.2453668e-08, 0, 0.3, 0, -5.2453668e-08, 0, 0.3, 0, 0, 0)

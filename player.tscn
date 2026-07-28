@@ -105,3 +105,19 @@ grow_vertical = 2
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
 color = Color(0.7385254, 0.9263694, 0.99984676, 1)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1935896966]
+
+[node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=476212185]
+offset_top = 609.0
+offset_right = 175.0
+offset_bottom = 648.0
+value = 100.0
+
+[node name="AmmoLabel" type="Label" parent="HUD" unique_id=1592462325]
+offset_left = 994.0
+offset_top = 606.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 30
+text = "Ammo:∞/∞"

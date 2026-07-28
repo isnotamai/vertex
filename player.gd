@@ -7,10 +7,18 @@ const RECOIL_VERTICAL = 1.0
 const RECOIL_HORIZONTAL = 1.2
 const FIRE_RATE = 0.15
 
+var health = 100
+var max_health = 100
+var ammo = 9999
+var max_ammo = 9999
+
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var raycast = $Head/Camera3D/RayCast3D
 @onready var muzzle = $Head/Camera3D/WeaponContainer/Muzzle
+
+@onready var health_bar = $HUD/HealthBar
+@onready var ammo_label = $HUD/AmmoLabel
 
 var bullet_scene = preload("res://bullet.tscn")
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -19,6 +27,7 @@ var fire_cooldown = 0.0
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	add_to_group("player")
+	update_ui()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -44,6 +53,10 @@ func _input(event):
 		
 		
 func shoot():
+	if ammo <= 0:
+		return
+	ammo -= 1
+	update_ui
 	var bullet = bullet_scene.instantiate()
 	get_tree().root.add_child(bullet)
 	bullet.global_position = muzzle.global_position
@@ -95,7 +108,17 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0.0, SPEED)
 		
 	move_and_slide()
+func update_ui():
+	health_bar.value = health
+	ammo_label.text = "Ammo:" + str(ammo) + "/" + str(max_ammo)
 
-
+func take_damage(amount):
+	health -= amount
+	update_ui()
+	if health <= 0:
+		die()
+		
+func die():
+	get_tree().reload_current_scene()
 func _on_timer_timeout() -> void:
-	pass # Replace with function body.
+	pass

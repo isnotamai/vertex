@@ -3,4 +3,4 @@
 /android/
 *.tmp
 .addon/
-.output/
+.output/*

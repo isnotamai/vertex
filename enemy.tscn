@@ -7,12 +7,38 @@
 radius = 0.53759766
 height = 4.4699326
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_f7cbu"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi2p4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iifgy"]
+bg_color = Color(0.66578007, 0, 0.16155344, 1)
+
 [node name="Enemy" type="CharacterBody3D" unique_id=1531969304]
 script = ExtResource("1_7k104")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1615235123]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1665611, -0.22614944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1665611, 0.20692664)
 shape = SubResource("CapsuleShape3D_15f66")
 
 [node name="Sketchfab_Scene" parent="." unique_id=165668647 instance=ExtResource("2_4gyqm")]
-transform = Transform3D(0.3, 0, 5.2453668e-08, 0, 0.3, 0, -5.2453668e-08, 0, 0.3, 0, 0, 0)
+transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1202682827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7051287, 0)
+billboard = 2
+texture = SubResource("ViewportTexture_f7cbu")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1947419182]
+transparent_bg = true
+size = Vector2i(200, 40)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport" unique_id=1153133270]
+offset_right = 200.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qi2p4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iifgy")
+max_value = 67.0
+value = 67.0
+show_percentage = false

@@ -18,6 +18,7 @@ var fire_cooldown = 0.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	add_to_group("player")
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:

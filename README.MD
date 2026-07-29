@@ -1,4 +1,4 @@
-# Vertux
+# VertEx
 
 A 3D first-person shooter game built with [Godot Engine 4.7](https://godotengine.org/).
 
